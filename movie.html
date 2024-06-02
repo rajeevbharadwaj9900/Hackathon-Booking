@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Movie Details</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #151515;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #202020;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar.light-mode {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+        .navbar-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container h1 {
+            margin: 0;
+            font-family: 'Sen', sans-serif;
+            cursor: pointer;
+        }
+        .logo-container h1.light-mode {
+            color: #000;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .search-input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            margin-right: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .search-input:focus {
+            background-color: #333;
+            transform: scale(1.1);
+        }
+        .search-icon {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .search-icon:hover {
+            transform: rotate(360deg);
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .profile-picture {
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        .profile-picture:hover {
+            transform: scale(1.1);
+        }
+        .profile-text-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .profile-text-container:hover {
+            color: #00ff00;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #202020;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .dropdown-menu.light-mode {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+        }
+        .dropdown-menu ul li {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu ul li:hover {
+            background-color: #333;
+        }
+        .dropdown-menu ul li.light-mode:hover {
+            background-color: #ccc;
+        }
+        .toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 20px;
+            width: 50px; /* Adjusted width */
+            height: 24px;
+            background-color: #ddd;
+            border-radius: 24px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+        .toggle-ball {
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 0.3s ease;
+            left: 2px; /* Adjusted for better centering */
+        }
+        .toggle-ball.light-mode {
+            transform: translateX(26px); /* Adjusted for better centering */
+        }
+        .container {
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .container.light-mode {
+            background-color: #f5f5f5;
+            color: #000;
+        }
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .featured-content {
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 500px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+        }
+        .featured-content.light-mode {
+            color: #000;
+            text-shadow: none;
+        }
+        .featured-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .featured-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .featured-desc {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .featured-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #00ff00;
+            color: #151515;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .featured-button:hover {
+            background-color: #00cc00;
+            transform: scale(1.1);
+        }
+        .movie-detail {
+            text-align: center;
+        }
+        .movie-detail h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .movie-detail h1.light-mode {
+            color: #000;
+        }
+        .movie-detail p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+        .movie-detail p.light-mode {
+            color: #000;
+        }
+        .movie-detail p:hover {
+            opacity: 0.8;
+        }
+        .movie-detail-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #00ff00;
+            color: #151515;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .movie-detail-button:hover {
+            background-color: #00cc00;
+            transform: scale(1.1);
+        }
+        .timing-selection {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .timing-selection label {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .timing-selection .timing-slot {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .timing-selection .timing-slot:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+        .timing-selection .timing-slot.selected {
+            background-color: #00ff00;
+            color: #151515;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo" id="logo-text">flakes</h1>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon" onclick="searchMovies()"></i>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpg" alt="">
+                <div class="profile-text-container" onclick="toggleDropdown()">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li>Account</li>
+                        <li>Settings</li>
+                        <li>Logout</li>
+                    </ul>
+                </div>
+                <div class="toggle" onclick="toggleTheme()">
+                    <div class="toggle-ball" id="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="page-container">
+        <div class="content-container">
+            <div class="featured-content" id="movie-featured-content">
+                <p class="featured-title" id="movie-featured-title"></p>
+                <p class="featured-desc" id="movie-featured-desc"></p>
+                <button class="featured-button" onclick="redirectToTheatre()">Book Now</button>
+            </div>
+            <div class="movie-detail">
+                <h1 id="movie-title"></h1>
+                <p id="movie-desc"></p>
+                <div class="timing-selection">
+                    <label>Select Timing:</label>
+                    <div class="timing-slot" data-time="6:30 AM">6:30 AM</div>
+                    <div class="timing-slot" data-time="10:00 AM">10:00 AM</div>
+                    <div class="timing-slot" data-time="1:00 PM">1:00 PM</div>
+                    <div class="timing-slot" data-time="5:00 PM">5:00 PM</div>
+                    <div class="timing-slot" data-time="10:00 PM">10:00 PM</div>
+                </div>
+                <button class="movie-detail-button" onclick="redirectToTheatre()">Book Now</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('id');
+            const movieTitle = urlParams.get('title');
+            const movieDesc = urlParams.get('desc');
+            const movieImg = urlParams.get('img');
+
+            document.getElementById('movie-title').innerText = movieTitle;
+            document.getElementById('movie-desc').innerText = movieDesc;
+            document.getElementById('movie-featured-title').innerText = movieTitle;
+            document.getElementById('movie-featured-desc').innerText = movieDesc;
+            document.getElementById('movie-featured-content').style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/${movieImg}')`;
+        });
+
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            dropdownMenu.style.opacity = dropdownMenu.style.display === 'block' ? '1' : '0';
+            dropdownMenu.style.transform = dropdownMenu.style.display === 'block' ? 'translateY(0)' : 'translateY(-10px)';
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleBall = document.getElementById('toggle-ball');
+            const pageContainer = document.getElementById('page-container');
+            const logoText = document.getElementById('logo-text');
+            body.classList.toggle('light-mode');
+            toggleBall.classList.toggle('light-mode');
+            pageContainer.classList.toggle('light-mode');
+            logoText.classList.toggle('light-mode');
+
+            const elements = document.querySelectorAll('.navbar, .dropdown-menu, .featured-content, .movie-detail h1, .movie-detail p');
+            elements.forEach(element => {
+                element.classList.toggle('light-mode');
+            });
+        }
+
+        const timingSlots = document.querySelectorAll('.timing-slot');
+        timingSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                timingSlots.forEach(slot => slot.classList.remove('selected'));
+                slot.classList.add('selected');
+                localStorage.setItem('selectedTiming', slot.getAttribute('data-time'));
+            });
+        });
+
+        function redirectToTheatre() {
+            window.location.href = 'theatre.html';
+        }
+    </script>
+</body>
+
+</html>

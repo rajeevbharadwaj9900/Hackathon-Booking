@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="theatre.css" />
+    <title>Movie Seat Booking</title>
+    <style>
+        .row-label {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 5px;
+        }
+        .seat {
+            width: 20px;
+            height: 20px;
+            background-color: #444451;
+            margin: 3px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        .seat.selected {
+            background-color: #6feaf6;
+        }
+        .seat.occupied {
+            background-color: #fff;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .row-number {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        .seat.number {
+            background-color: transparent;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="screen"></div>
+        <div class="row-number">
+            <span class="row-label"></span>
+            <div class="seat number">1</div>
+            <div class="seat number">2</div>
+            <div class="seat number">3</div>
+            <div class="seat number">4</div>
+            <div class="seat number">5</div>
+            <div class="seat number">6</div>
+            <div class="seat number">7</div>
+            <div class="seat number">8</div>
+        </div>
+        <div class="row">
+            <span class="row-label">A</span>
+            <div class="seat" data-seat="A1"></div>
+            <div class="seat" data-seat="A2"></div>
+            <div class="seat" data-seat="A3"></div>
+            <div class="seat" data-seat="A4"></div>
+            <div class="seat" data-seat="A5"></div>
+            <div class="seat" data-seat="A6"></div>
+            <div class="seat" data-seat="A7"></div>
+            <div class="seat" data-seat="A8"></div>
+        </div>
+        <div class="row">
+            <span class="row-label">B</span>
+            <div class="seat" data-seat="B1"></div>
+            <div class="seat" data-seat="B2"></div>
+            <div class="seat" data-seat="B3"></div>
+            <div class="seat" data-seat="B4"></div>
+            <div class="seat occupied" data-seat="B5"></div>
+            <div class="seat occupied" data-seat="B6"></div>
+            <div class="seat" data-seat="B7"></div>
+            <div class="seat" data-seat="B8"></div>
+        </div>
+        <div class="row">
+            <span class="row-label">C</span>
+            <div class="seat" data-seat="C1"></div>
+            <div class="seat" data-seat="C2"></div>
+            <div class="seat" data-seat="C3"></div>
+            <div class="seat" data-seat="C4"></div>
+            <div class="seat" data-seat="C5"></div>
+            <div class="seat" data-seat="C6"></div>
+            <div class="seat occupied" data-seat="C7"></div>
+            <div class="seat occupied" data-seat="C8"></div>
+        </div>
+        <div class="row">
+            <span class="row-label">D</span>
+            <div class="seat" data-seat="D1"></div>
+            <div class="seat" data-seat="D2"></div>
+            <div class="seat" data-seat="D3"></div>
+            <div class="seat" data-seat="D4"></div>
+            <div class="seat" data-seat="D5"></div>
+            <div class="seat" data-seat="D6"></div>
+            <div class="seat" data-seat="D7"></div>
+            <div class="seat" data-seat="D8"></div>
+        </div>
+        <div class="row">
+            <span class="row-label">E</span>
+            <div class="seat" data-seat="E1"></div>
+            <div class="seat" data-seat="E2"></div>
+            <div class="seat" data-seat="E3"></div>
+            <div class="seat" data-seat="E4"></div>
+            <div class="seat occupied" data-seat="E5"></div>
+            <div class="seat occupied" data-seat="E6"></div>
+            <div class="seat" data-seat="E7"></div>
+            <div class="seat" data-seat="E8"></div>
+        </div>
+        <div class="row">
+            <span class="row-label">F</span>
+            <div class="seat" data-seat="F1"></div>
+            <div class="seat" data-seat="F2"></div>
+            <div class="seat" data-seat="F3"></div>
+            <div class="seat" data-seat="F4"></div>
+            <div class="seat occupied" data-seat="F5"></div>
+            <div class="seat occupied" data-seat="F6"></div>
+            <div class="seat occupied" data-seat="F7"></div>
+            <div class="seat" data-seat="F8"></div>
+        </div>
+    </div>
+    <p class="text">
+        You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span>
+    </p>
+    <button id="confirm-btn">Confirm Tickets</button>
+    <script src="theatre.js"></script>
+</body>
+</html>

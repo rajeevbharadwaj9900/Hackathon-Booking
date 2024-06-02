@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Attraction Details</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="img2/logo.png" alt="Logo" class="logo" onclick="location.href='amusements.html'">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon" onclick="searchAttractions()"></i>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img2/profile.jpg" alt="">
+                <div class="profile-text-container">
+                    <span class="profile-text" id="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li onclick="location.href='account.html'">Account</li>
+                        <li>Settings</li>
+                        <li onclick="logout()">Logout</li>
+                    </ul>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content" id="attraction-featured-content">
+                <h1 class="featured-title" id="attraction-featured-title"></h1>
+                <p class="featured-desc" id="attraction-featured-desc"></p>
+            </div>
+            <div class="attraction-detail">
+                <h1 id="attraction-title"></h1>
+                <p id="attraction-desc"></p>
+            </div>
+            <div class="booking-section">
+                <h2>Select Date</h2>
+                <input type="date" id="booking-date" required>
+                <button class="featured-button" onclick="redirectToBooking()">Book Now</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const attractionId = urlParams.get('id');
+            const attractionTitle = urlParams.get('title');
+            const attractionDesc = urlParams.get('desc');
+            const attractionImg = urlParams.get('img');
+
+            document.getElementById('attraction-title').innerText = attractionTitle;
+            document.getElementById('attraction-desc').innerText = attractionDesc;
+            document.getElementById('attraction-featured-title').innerText = attractionTitle;
+            document.getElementById('attraction-featured-desc').innerText = attractionDesc;
+            document.getElementById('attraction-featured-content').style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img2/${attractionImg}')`;
+
+            // Check login status
+            if (localStorage.getItem('loggedIn')) {
+                document.getElementById('profile-text').textContent = 'Profile';
+                document.getElementById('dropdown-menu').style.display = 'block';
+            } else {
+                document.getElementById('profile-text').textContent = 'Sign In';
+                document.getElementById('dropdown-menu').style.display = 'none';
+            }
+
+            // Dark mode toggle
+            const ball = document.querySelector(".toggle-ball");
+            const items = document.querySelectorAll(".container,.park-list-title,.navbar-container,.toggle");
+
+            ball.addEventListener("click", () => {
+                items.forEach((item) => {
+                    item.classList.toggle("active");
+                });
+                ball.classList.toggle("active");
+            });
+        });
+
+        function redirectToBooking() {
+            const date = document.getElementById('booking-date').value;
+            if (date) {
+                window.location.href = `payment1.html?date=${encodeURIComponent(date)}`;
+            } else {
+                alert("Please select a date to book.");
+            }
+        }
+
+        function searchAttractions() {
+            const query = document.querySelector('.search-input').value;
+            if (query) {
+                window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            location.href = 'amusements.html';
+        }
+    </script>
+</body>
+</html>

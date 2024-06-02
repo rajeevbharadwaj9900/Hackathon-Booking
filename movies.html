@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Movie Design</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="C:\Users\rahul\OneDrive\Desktop\New folder\SPOT_SECURE-removebg-preview.png" alt="Logo" class="logo" onclick="location.href='index.html'">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon" onclick="searchMovies()"></i>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpg" alt="Profile Picture">
+                <div class="profile-text-container">
+                    <span class="profile-text" id="profile-text">Sign In</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li onclick="location.href='account.html'">Account</li>
+                        <li>Settings</li>
+                        <li onclick="logout()">Logout</li>
+                    </ul>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content" style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
+                <h1 class="featured-title"></h1>
+                <p class="featured-desc"></p>
+                <button class="featured-button">BOOK NOW</button>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <i class="fas fa-chevron-left arrow-left"></i>
+                    <div class="movie-list">
+                        <div class="movie-list-item" data-id="1" data-title="Her" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="1.jpeg">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="2" data-title="Star Wars" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="2.jpeg">
+                            <img class="movie-list-item-img" src="img/2.jpeg" alt="">
+                            <span class="movie-list-item-title">Star Wars</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="3" data-title="Storm" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="3.jpg">
+                            <img class="movie-list-item-img" src="img/3.jpg" alt="">
+                            <span class="movie-list-item-title">Storm</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="4" data-title="1917" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="4.jpg">
+                            <img class="movie-list-item-img" src="img/4.jpg" alt="">
+                            <span class="movie-list-item-title">1917</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="5" data-title="Avengers" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="5.jpg">
+                            <img class="movie-list-item-img" src="img/5.jpg" alt="">
+                            <span class="movie-list-item-title">Avengers</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="6" data-title="Inception" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="6.jpg">
+                            <img class="movie-list-item-img" src="img/6.jpg" alt="">
+                            <span class="movie-list-item-title">Inception</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="7" data-title="Interstellar" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="7.jpg">
+                            <img class="movie-list-item-img" src="img/7.jpg" alt="">
+                            <span class="movie-list-item-title">Interstellar</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="8" data-title="Joker" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="8.jpg">
+                            <img class="movie-list-item-img" src="img/8.jpg" alt="">
+                            <span class="movie-list-item-title">Joker</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="9" data-title="Parasite" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="9.jpg">
+                            <img class="movie-list-item-img" src="img/9.jpg" alt="">
+                            <span class="movie-list-item-title">Parasite</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="10" data-title="The Dark Knight" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="10.jpg">
+                            <img class="movie-list-item-img" src="img/10.jpg" alt="">
+                            <span class="movie-list-item-title">The Dark Knight</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="11" data-title="The Lion King" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="11.jpg">
+                            <img class="movie-list-item-img" src="img/11.jpg" alt="">
+                            <span class="movie-list-item-title">The Lion King</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="12" data-title="Titanic" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="12.jpg">
+                            <img class="movie-list-item-img" src="img/12.jpg" alt="">
+                            <span class="movie-list-item-title">Titanic</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="13" data-title="Toy Story" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="13.jpg">
+                            <img class="movie-list-item-img" src="img/13.jpg" alt="">
+                            <span class="movie-list-item-title">Toy Story</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="14" data-title="Up" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="14.jpg">
+                            <img class="movie-list-item-img" src="img/14.jpg" alt="">
+                            <span class="movie-list-item-title">Up</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="15" data-title="WALL-E" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="15.jpg">
+                            <img class="movie-list-item-img" src="img/15.jpg" alt="">
+                            <span class="movie-list-item-title">WALL-E</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item" data-id="16" data-title="Zootopia" data-desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium." data-img="16.jpg">
+                            <img class="movie-list-item-img" src="img/16.jpg" alt="">
+                            <span class="movie-list-item-title">Zootopia</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app1.js"></script>
+</body>
+
+</html>

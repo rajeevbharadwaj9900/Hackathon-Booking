@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Amusement Park Design</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="img2/logo.png" alt="Logo" class="logo" onclick="location.href='amusements.html'">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon" onclick="searchAttractions()"></i>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img2/profile.jpg" alt="">
+                <div class="profile-text-container">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li onclick="location.href='account.html'">Account</li>
+                        <li>Settings</li>
+                        <li onclick="logout()">Logout</li>
+                    </ul>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content" id="featured-content">
+                <h1 class="featured-title">Featured Attraction</h1>
+                <p class="featured-desc">Experience the thrill of our top attractions!</p>
+                <button class="featured-button">Book Now</button>
+            </div>
+            <div class="park-list-container">
+                <h1 class="park-list-title">PARKS</h1>
+                <div class="park-list-wrapper">
+                    <i class="fas fa-chevron-left arrow arrow-left"></i>
+                    <div class="park-list">
+                        <div class="park-list-item" data-id="1" data-title="Wonderla" data-desc="Get ready to be mindblown by the crazy rides that await!" data-img="1.jpeg">
+                            <img class="park-list-item-img" src="img2/1.jpeg" alt="">
+                            <span class="park-list-item-title">Wonderla</span>
+                            <p class="park-list-item-desc">Get ready to be mindblown by the crazy rides that await!</p>
+                            <a href="amusement.html?id=1&title=Wonderla&desc=Get%20ready%20to%20be%20mindblown%20by%20the%20crazy%20rides%20that%20await!&img=1.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="2" data-title="Snow World" data-desc="Experience as you choose. Play with real snowfall, climb a mountain wall, click photos in sub-zero temperatures." data-img="2.jpeg">
+                            <img class="park-list-item-img" src="img2/2.jpeg" alt="">
+                            <span class="park-list-item-title">Snow World</span>
+                            <p class="park-list-item-desc">Experience as you choose. Play with real snowfall, climb a mountain wall, click photos in sub-zero temperatures.</p>
+                            <a href="amusement.html?id=2&title=Snow%20World&desc=Experience%20as%20you%20choose.%20Play%20with%20real%20snowfall,%20climb%20a%20mountain%20wall,%20click%20photos%20in%20sub-zero%20temperatures.&img=2.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="3" data-title="FunWorld" data-desc="Brave daring loops, wild drops, and heart-pounding speeds as you challenge yourself to the ultimate adventure." data-img="3.jpg">
+                            <img class="park-list-item-img" src="img2/3.jpg" alt="">
+                            <span class="park-list-item-title">FunWorld</span>
+                            <p class="park-list-item-desc">Brave daring loops, wild drops, and heart-pounding speeds as you challenge yourself to the ultimate adventure.</p>
+                            <a href="amusement.html?id=3&title=FunWorld&desc=Brave%20daring%20loops,%20wild%20drops,%20and%20heart-pounding%20speeds%20as%20you%20challenge%20yourself%20to%20the%20ultimate%20adventure.&img=3.jpg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="4" data-title="Lumbini Park" data-desc="Nestled on the banks of the pristine Nagawara Lake, Lumbini Gardens in Bangalore is a haven of tranquility and recreation." data-img="4.jpg">
+                            <img class="park-list-item-img" src="img2/4.jpg" alt="">
+                            <span class="park-list-item-title">Lumbini Park</span>
+                            <p class="park-list-item-desc">Nestled on the banks of the pristine Nagawara Lake, Lumbini Gardens in Bangalore is a haven of tranquility and recreation.</p>
+                            <a href="amusement.html?id=4&title=Lumbini%20Park&desc=Nestled%20on%20the%20banks%20of%20the%20pristine%20Nagawara%20Lake,%20Lumbini%20Gardens%20in%20Bangalore%20is%20a%20haven%20of%20tranquility%20and%20recreation.&img=4.jpg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="5" data-title="Jollywood Studios" data-desc="The ultimate movie-themed family destination that promises a world of magical experiences for visitors of all ages." data-img="5.jpeg">
+                            <img class="park-list-item-img" src="img2/5.jpeg" alt="">
+                            <span class="park-list-item-title">Jollywood Studios</span>
+                            <p class="park-list-item-desc">The ultimate movie-themed family destination that promises a world of magical experiences for visitors of all ages.</p>
+                            <a href="amusement.html?id=5&title=Jollywood%20Studios&desc=The%20ultimate%20movie-themed%20family%20destination%20that%20promises%20a%20world%20of%20magical%20experiences%20for%20visitors%20of%20all%20ages.&img=5.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="6" data-title="Trampoline Park" data-desc="Largest trampoline Park for all age groups. Experience the thrill while burning some calories at the same time." data-img="6.jpeg">
+                            <img class="park-list-item-img" src="img2/6.jpeg.jpg" alt="">
+                            <span class="park-list-item-title">Trampoline Park</span>
+                            <p class="park-list-item-desc">Largest trampoline Park for all age groups. Experience the thrill while burning some calories at the same time.</p>
+                            <a href="amusement.html?id=6&title=Trampoline%20Park&desc=Largest%20trampoline%20Park%20for%20all%20age%20groups.%20Experience%20the%20thrill%20while%20burning%20some%20calories%20at%20the%20same%20time.&img=6.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow arrow-right"></i>
+                </div>
+            </div>
+            <div class="park-list-container">
+                <h1 class="park-list-title">POPULAR RIDES</h1>
+                <div class="park-list-wrapper">
+                    <i class="fas fa-chevron-left arrow arrow-left"></i>
+                    <div class="park-list">
+                        <div class="park-list-item" data-id="7" data-title="Flash Tower" data-desc="Join us today as we count down the top 10 rides at Wonderla." data-img="8.jpeg">
+                            <img class="park-list-item-img" src="img2/8.jpeg.jpeg" alt="">
+                            <span class="park-list-item-title">Flash Tower</span>
+                            <p class="park-list-item-desc">Join us today as we count down the top 10 rides at Wonderla.</p>
+                            <a href="amusement.html?id=7&title=Flash%20Tower&desc=Join%20us%20today%20as%20we%20count%20down%20the%20top%2010%20rides%20at%20Wonderla.&img=8.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="8" data-title="Recoil" data-desc="Introducing India’s first-ever reverse looping Roller Coaster - RECOIL, which will give you a whole new experience of thrill." data-img="9.jpeg">
+                            <img class="park-list-item-img" src="img2/9.jpeg" alt="">
+                            <span class="park-list-item-title">Recoil</span>
+                            <p class="park-list-item-desc">Introducing India’s first-ever reverse looping Roller Coaster - RECOIL, which will give you a whole new experience of thrill.</p>
+                            <a href="amusement.html?id=8&title=Recoil&desc=Introducing%20India’s%20first-ever%20reverse%20looping%20Roller%20Coaster%20-%20RECOIL,%20which%20will%20give%20you%20a%20whole%20new%20experience%20of%20thrill.&img=9.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="9" data-title="Boomerang" data-desc="Boomerang is a thrilling water ride that will test the rider's nerves." data-img="10.jpeg">
+                            <img class="park-list-item-img" src="img2/10.jpeg" alt="">
+                            <span class="park-list-item-title">Boomerang</span>
+                            <p class="park-list-item-desc">Boomerang is a thrilling water ride that will test the rider's nerves.</p>
+                            <a href="amusement.html?id=9&title=Boomerang&desc=Boomerang%20is%20a%20thrilling%20water%20ride%20that%20will%20test%20the%20rider's%20nerves.&img=10.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="10" data-title="Sky Swinger" data-desc="Take a ride on the Sky Swinger, a classic swing ride that will lift you high into the air and give you a bird's eye view of the park." data-img="11.jpeg">
+                            <img class="park-list-item-img" src="img2/11.jpeg" alt="">
+                            <span class="park-list-item-title">Sky Swinger</span>
+                            <p class="park-list-item-desc">Take a ride on the Sky Swinger, a classic swing ride that will lift you high into the air and give you a bird's eye view of the park.</p>
+                            <a href="amusement.html?id=10&title=Sky%20Swinger&desc=Take%20a%20ride%20on%20the%20Sky%20Swinger,%20a%20classic%20swing%20ride%20that%20will%20lift%20you%20high%20into%20the%20air%20and%20give%20you%20a%20bird's%20eye%20view%20of%20the%20park.&img=11.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="11" data-title="Bumper Car" data-desc="For a more action-packed experience, climb aboard our bumper cars and let the fun begin!" data-img="12.jpeg">
+                            <img class="park-list-item-img" src="img2/12.jpeg" alt="">
+                            <span class="park-list-item-title">Bumper Car</span>
+                            <p class="park-list-item-desc">For a more action-packed experience, climb aboard our bumper cars and let the fun begin!</p>
+                            <a href="amusement.html?id=11&title=Bumper%20Car&desc=For%20a%20more%20action-packed%20experience,%20climb%20aboard%20our%20bumper%20cars%20and%20let%20the%20fun%20begin!&img=12.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                        <div class="park-list-item" data-id="12" data-title="Samba Balloons" data-desc="The Samba Balloon is a ride that combines the thrill of spinning with the excitement of going up and down." data-img="13.jpeg">
+                            <img class="park-list-item-img" src="img2/13.jpeg" alt="">
+                            <span class="park-list-item-title">Samba Balloons</span>
+                            <p class="park-list-item-desc">The Samba Balloon is a ride that combines the thrill of spinning with the excitement of going up and down.</p>
+                            <a href="amusement.html?id=12&title=Samba%20Balloons&desc=The%20Samba%20Balloon%20is%20a%20ride%20that%20combines%20the%20thrill%20of%20spinning%20with%20the%20excitement%20of%20going%20up%20and%20down.&img=13.jpeg" class="park-list-item-button">Book Now</a>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app2.js"></script>
+    <script>
+        document.getElementById('featured-content').style.background = "linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img2/f-1.jpg')";
+        document.getElementById('featured-content').style.backgroundSize = 'cover';
+    </script>
+</body>
+</html>

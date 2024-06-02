@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Account</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="img/logo.png" alt="Logo" class="logo" onclick="location.href='index.html'">
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon" onclick="searchMovies()"></i>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpg" alt="Profile Picture">
+                <div class="profile-text-container">
+                    <span class="profile-text" id="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <ul>
+                        <li onclick="location.href='account.html'">Account</li>
+                        <li>Settings</li>
+                        <li onclick="logout()">Logout</li>
+                    </ul>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <h1>Account Information</h1>
+            <form id="account-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('account-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Save changes (this should be replaced with actual save logic)
+            alert('Changes saved!');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                    <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                        <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                        <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                        <label for="reg-log"></label>
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">Log In</h4>
+                                            <form id="login-form">
+                                                <div class="form-group">
+                                                    <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                    <span class="password-toggle" onclick="togglePassword('logpass')"><i class="uil uil-eye"></i></span>
+                                                </div>
+                                                <button type="submit" class="btn mt-4">Submit</button>
+                                                <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
+                                            </form>
+                                            <div id="login-message"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">Sign Up</h4>
+                                            <form id="register-form">
+                                                <div class="form-group">
+                                                    <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
+                                                    <i class="input-icon uil uil-user"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+                                                    <i class="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="signuppass" autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                    <span class="password-toggle" onclick="togglePassword('signuppass')"><i class="uil uil-eye"></i></span>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="confirmpass" class="form-style" placeholder="Confirm Password" id="confirmpass" autocomplete="off">
+                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                    <span class="password-toggle" onclick="togglePassword('confirmpass')"><i class="uil uil-eye"></i></span>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="number" name="age" class="form-style" placeholder="Your Age" id="age" autocomplete="off">
+                                                    <i class="input-icon uil uil-calendar-alt"></i>
+                                                </div>
+                                                <button type="submit" class="btn mt-4">Submit</button>
+                                            </form>
+                                            <div id="register-message"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+
+        $(document).ready(function() {
+            $('#register-form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'register.php',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#register-message').html('<p>' + response + '</p>');
+                        if (response.includes('successfully')) {
+                            setTimeout(function() {
+                                $('#reg-log').prop('checked', false);
+                                $('#register-message').html('');
+                            }, 3000);
+                        }
+                    }
+                });
+            });
+
+            $('#login-form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'login.php',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        const res = JSON.parse(response);
+                        if (res.status === 'success') {
+                            sessionStorage.setItem('username', res.username);
+                            window.location.href = 'landing.html'; // Redirect to landing.html on successful login
+                        } else {
+                            $('#login-message').html('<p>' + res.message + '</p>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

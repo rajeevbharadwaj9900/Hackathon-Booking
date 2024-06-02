@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="paymentz.css" />
+    <title>Payment</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Portal</h1>
+        <p id="selected-timing"></p>
+        <p id="selected-seats"></p>
+        <p id="total-amount"></p>
+        <div class="payment-form">
+            <input type="text" id="upi-id" placeholder="Enter UPI ID" required />
+            <button type="button" id="pay-now-btn">Pay Now</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const selectedTiming = localStorage.getItem('selectedTiming');
+            const selectedSeats = JSON.parse(localStorage.getItem('selectedSeatsDetails'));
+            const totalAmount = localStorage.getItem('totalAmount');
+
+            if (selectedTiming) {
+                document.getElementById('selected-timing').innerText = `Selected Timing: ${selectedTiming}`;
+            }
+            if (selectedSeats) {
+                document.getElementById('selected-seats').innerText = `Selected Seats: ${selectedSeats.join(', ')}`;
+            }
+            if (totalAmount) {
+                document.getElementById('total-amount').innerText = `Total Amount: $${totalAmount}`;
+            }
+        });
+
+        document.getElementById('pay-now-btn').addEventListener('click', () => {
+            const upiId = document.getElementById('upi-id').value;
+            const totalAmount = localStorage.getItem('totalAmount');
+
+            if (upiId) {
+                localStorage.setItem('upiId', upiId);
+                window.location.href = 'success.html';
+            } else {
+                alert('Please enter your UPI ID');
+            }
+        });
+    </script>
+</body>
+</html>

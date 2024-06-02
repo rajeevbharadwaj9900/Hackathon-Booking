@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="confirmation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Confirmation</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmation Page</h1>
+        <div id="confirmation-details"></div>
+        <button onclick="window.location.href='amusements.html'">Done</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const total = urlParams.get('total');
+            const upiId = urlParams.get('upi-id');
+
+            document.getElementById('confirmation-details').innerHTML = `
+                <p>Total Amount Paid: $${total}</p>
+                <p>UPI ID: ${upiId}</p>
+            `;
+        });
+    </script>
+</body>
+</html>

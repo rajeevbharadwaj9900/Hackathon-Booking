@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Search Results</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">flakes</h1>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <i class="fas fa-search search-icon" onclick="searchMovies()"></i>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpg" alt="">
+                <div class="profile-text-container">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <ul>
+                        <li>Account</li>
+                        <li>Settings</li>
+                        <li>Logout</li>
+                    </ul>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <h1>Search Results</h1>
+            <div class="movie-list-wrapper">
+                <div class="movie-list" id="search-results"></div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+            const results = document.getElementById('search-results');
+            
+            // Mock data; replace with actual data
+            const movies = [
+                { id: 1, title: 'Her', desc: 'Lorem ipsum dolor sit amet.', img: '1.jpeg' },
+                { id: 2, title: 'Star Wars', desc: 'Lorem ipsum dolor sit amet.', img: '2.jpeg' },
+                // Add more movies here
+            ];
+
+            const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()));
+            filteredMovies.forEach(movie => {
+                const movieItem = document.createElement('div');
+                movieItem.classList.add('movie-list-item');
+                movieItem.dataset.id = movie.id;
+                movieItem.dataset.title = movie.title;
+                movieItem.dataset.desc = movie.desc;
+                movieItem.dataset.img = movie.img;
+                movieItem.innerHTML = `
+                    <img class="movie-list-item-img" src="img/${movie.img}" alt="${movie.title}">
+                    <span class="movie-list-item-title">${movie.title}</span>
+                    <p class="movie-list-item-desc">${movie.desc}</p>
+                    <button class="movie-list-item-button">Watch</button>
+                `;
+                results.appendChild(movieItem);
+            });
+
+            // Add click event to movie items
+            const movieItems = document.querySelectorAll(".movie-list-item");
+
+            movieItems.forEach(item => {
+                item.addEventListener("click", () => {
+                    const movieId = item.getAttribute("data-id");
+                    const movieTitle = item.getAttribute("data-title");
+                    const movieDesc = item.getAttribute("data-desc");
+                    const movieImg = item.getAttribute("data-img");
+                    window.location.href = `movie.html?id=${movieId}&title=${encodeURIComponent(movieTitle)}&desc=${encodeURIComponent(movieDesc)}&img=${movieImg}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

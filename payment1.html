@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="paymentz2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Payment</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Portal</h1>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="adult-tickets">Number of Adult Tickets:</label>
+                <input type="number" id="adult-tickets" name="adult-tickets" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="child-tickets">Number of Child Tickets:</label>
+                <input type="number" id="child-tickets" name="child-tickets" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="booking-date">Booking Date:</label>
+                <input type="text" id="booking-date" name="booking-date" readonly>
+            </div>
+            <div class="form-group">
+                <label for="upi-id">UPI ID:</label>
+                <input type="text" id="upi-id" name="upi-id" required>
+            </div>
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const date = urlParams.get('date');
+            document.getElementById('booking-date').value = date;
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const adultTickets = parseInt(document.getElementById('adult-tickets').value) || 0;
+            const childTickets = parseInt(document.getElementById('child-tickets').value) || 0;
+            const date = document.getElementById('booking-date').value;
+            const upiId = document.getElementById('upi-id').value;
+
+            const adultTicketPrice = 15;
+            const childTicketPrice = 10;
+
+            const totalAmount = (adultTickets * adultTicketPrice) + (childTickets * childTicketPrice);
+
+            if (date && upiId) {
+                alert(`You have selected ${adultTickets} adult tickets and ${childTickets} child tickets for ${date}. Total amount: $${totalAmount}.`);
+                window.location.href = `confirmation.html?total=${totalAmount}&upi-id=${upiId}`;
+            } else {
+                alert('Please enter the number of tickets, UPI ID and select a date.');
+            }
+        });
+    </script>
+</body>
+</html>
